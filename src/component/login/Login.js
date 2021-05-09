@@ -1,12 +1,29 @@
-import React from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import React, { useState } from  'react'
+import { Grid,Paper, Avatar, TextField, Button } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import axios from "../axios/axios"
+import FormData from "form-data"
 
-const Login=({handleChange})=>{
+const Login=()=>{
 
-    const paperStyle={padding :20,height:'73vh',width:300, margin:"0 auto"}
+    const paperStyle={padding :20,height:'auto',width:300, margin:"0 auto"}
     const avatarStyle={backgroundColor:'#a5aaad'}
     const btnstyle={margin:'8px 0'}
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        
+        const formData = new FormData();
+        formData.append("username",username);
+        formData.append("password",password);
+        axios.post("/SignIn", formData).then((res) => {
+            window.location.href="/Home"
+        }).catch((error)=> alert("fail"))
+    }
+
     return(
         <Grid>
             <Paper style={paperStyle}>
@@ -14,14 +31,23 @@ const Login=({handleChange})=>{
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Log In</h2>
                 </Grid>
-                <TextField label='Username' placeholder='Enter username' name="username" fullWidth required/>
-                <TextField label='Password' placeholder='Enter password' type='password' name="password" fullWidth required/><br/><br/>
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
-                <Typography ><br/> Do you have an account ?
-                     <Link href="#" onClick={()=>handleChange("event",1)}>
-                        Register 
-                </Link>
-                </Typography>
+                <TextField label='Username' 
+                    placeholder='Enter username' 
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)} fullWidth required/>
+                <TextField label='Password' 
+                    placeholder='Enter password' 
+                    type='password' 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} fullWidth required/><br/><br/>
+                <Button 
+                    onClick={handleFormSubmit} 
+                    color='primary' 
+                    variant="contained" 
+                    style={btnstyle} fullWidth>
+                        Sign in
+                    </Button>
+                
             </Paper>
         </Grid>
     )
