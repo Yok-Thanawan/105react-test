@@ -2,11 +2,11 @@ import React,{ Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect,} from 'react-router-dom'
 import './App.css';
 import Navbar from './component/navbar/Navbar'
-import Absent from './component/absent/Absent'
+import AbsentForm from './component/absent/AbsentForm'
 import Attendance from './component/attendance/Attendance'
 import Profile from './component/profile/Profile'
-import SignInOutContainer from './component/login/index'
 import hello from './component/picture/hello.svg'
+import EditProfile from './component/profile/EditProfile';
 
 export default class Home extends Component {
  
@@ -19,22 +19,22 @@ export default class Home extends Component {
       <Navbar />
       <main>
         <Switch>
-          <Route path="/" exact>
+          <Route path="/Home" exact>
             {welcome}
           </Route>
           <Route path="/Profile" exact>
             <Profile />
           </Route>
           <Route path="/Applyleave" exact>
-            <Absent />
+            <AbsentForm />
           </Route>
           <Route path="/Attendance" exact>
             <Attendance />
           </Route>
-          <Route path="/Login" exact>
-            <SignInOutContainer />
+          <Route path="/Edit" exact>
+            <EditProfile />
           </Route>
-          <Redirect to="/" />
+          <Redirect to="/Home" />
         </Switch>
       </main>
     </Router>
