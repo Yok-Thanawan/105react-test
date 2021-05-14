@@ -5,7 +5,7 @@ import axios from "axios";
 const Navbar = () => {
     const handleLogout = () => {
         axios
-        .get('/LogoutServlet')
+        .get('http://localhost:8080/fortest_war_exploded/LogoutServlet')
         .then((res) => {
             window.location.href='/'
         })

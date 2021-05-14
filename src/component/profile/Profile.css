@@ -13,12 +13,6 @@ main {
     align-items: center;
   }
   
-  .main__title > img {
-    max-height: 100px;
-    object-fit: contain;
-    margin-right: 20px;
-  }
-  
   .main__greeting > h1 {
     font-size: 24px;
     color: #2e4a66;
@@ -62,6 +56,13 @@ main {
     font-weight: 700;
     color: #a5aaad;
     padding: 10px 0;
+  }
+
+  .info input{
+    border: none;
+    outline: none;
+    background:none;
+    overflow: hidden;
   }
   
   @media only screen and (max-width: 855px) {
