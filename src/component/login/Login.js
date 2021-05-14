@@ -6,7 +6,7 @@ import FormData from "form-data"
 
 const Login=()=>{
 
-    const paperStyle={padding :20,height:'auto',width:300, margin:"0 auto"}
+    const paperStyle={padding :20,height: 495,width:300, margin:"0 auto"}
     const avatarStyle={backgroundColor:'#a5aaad'}
     const btnstyle={margin:'8px 0'}
 
@@ -19,13 +19,16 @@ const Login=()=>{
         const formData = new FormData();
         formData.append("username",username);
         formData.append("password",password);
-        axios.post("/SignIn", formData).then((res) => {
+        axios
+        .post("/LoginServlet", formData)
+        .then((res) => {
             window.location.href="/Home"
-        }).catch((error)=> alert("fail"))
+        })
+        .catch((error)=> alert("fail"))
     }
 
-    return(
-        <Grid>
+    return(        
+        <Grid >
             <Paper style={paperStyle}>
                 <Grid align='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
@@ -46,10 +49,9 @@ const Login=()=>{
                     variant="contained" 
                     style={btnstyle} fullWidth>
                         Sign in
-                    </Button>
-                
+                    </Button>                
             </Paper>
-        </Grid>
+        </Grid>        
     )
 }
 

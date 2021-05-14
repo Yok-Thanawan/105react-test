@@ -1,11 +1,22 @@
 import "./Navbar.css";
 import {NavLink} from 'react-router-dom'
+import axios from "axios";
 
 const Navbar = () => {
-  return (
+    const handleLogout = () => {
+        axios
+        .get('/LogoutServlet')
+        .then((res) => {
+            window.location.href='/'
+        })
+        .catch((error) => {
+            alert("fail")
+        })
+    }
+    return (
     <nav className="navbar">
         <div className="navbar__left">
-            <NavLink to="/" activeClassName="is-active"> Employee System </NavLink>
+            <NavLink to="/Home" activeClassName="is-active"> Employee System </NavLink>
         </div>
         <div className="navbar__right">
             <NavLink to="/Profile" activeClassName="is-active">
@@ -17,9 +28,10 @@ const Navbar = () => {
             <NavLink to="/Attendance" activeClassName="is-active" >
                 <i className="fa fa-clock-o" aria-hidden="true"></i>
             </NavLink>            
-            <NavLink to="/Login" activeClassName="is-active">
+            <NavLink to="/Edit" activeClassName="is-active">
             <i className="fa fa-user" aria-hidden="true"></i>
             </NavLink>
+            <button onClick={handleLogout}>Logout</button>
         </div>
         </nav>
   );

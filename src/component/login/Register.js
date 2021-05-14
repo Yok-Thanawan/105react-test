@@ -28,9 +28,12 @@ const Signup = () => {
         formData.append("username", username);
         formData.append("password", password);
         
-        axios.post("/SignUp",formData).then((res)=>{
-            window.location.href="/home"
-        }).catch((error)=> alert(error.response.data.message))
+        axios
+        .post("/RegisterServlet",formData)
+        .then((res)=>{
+            window.location.href="/Home"
+        })
+        .catch((error)=> alert("fail"))
     }
 
     return (
@@ -61,7 +64,7 @@ const Signup = () => {
                         value={address}
                         onChange={(e) => setAddress(e.target.value)} required />
                     <TextField fullWidth label='Birthdate' 
-                        placeholder="Enter your birthdate (DD/MM/YY)" 
+                        placeholder="Enter your birthdate (YYYY-MM-DD)" 
                         value={birthdate}
                         onChange={(e) => setBirthdate(e.target.value)} required />
                     <TextField fullWidth label='Username' 
